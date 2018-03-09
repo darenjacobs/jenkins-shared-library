@@ -24,6 +24,7 @@ def call(body) {
                 }
                 stage ('Deploy') {
                     sh "echo 'deploying to server ${config.serverDomain}...'"
+                    sh "mvn deploy"
                 }
             } catch (err) {
                 currentBuild.result = 'FAILED'
