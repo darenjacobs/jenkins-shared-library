@@ -5,7 +5,7 @@ def call(body) {
         body.delegate = config
         body()
 
-        node (label: 'jenkins-node') {
+        node (label: 'swarm') {
             // Clean workspace before doing anything
             deleteDir()
 
