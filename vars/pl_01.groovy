@@ -5,7 +5,7 @@ def call(body) {
         body.delegate = config
         body()
 
-        node (label: 'swarm') {
+        node (label: 'alpine') {
             // Clean workspace before doing anything
             deleteDir()
 
