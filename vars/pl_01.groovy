@@ -5,7 +5,7 @@ def call(body) {
         body.delegate = config
         body()
 
-        node (label: 'custom-slave') {
+        node (label: 'jenkins-node') {
             // Clean workspace before doing anything
             deleteDir()
 
