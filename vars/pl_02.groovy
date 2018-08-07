@@ -5,31 +5,31 @@ def call(body) {
         body.delegate = config
         body()
 
-        node (label: 'jenkins-node') {
+        node (label: 'jenkins-pod') {
             // Clean workspace before doing anything
             deleteDir()
 
             try {
                 stage ('Clone') {
-                    container('jenkins-node') {
+                    container('jenkins-pod') {
                         checkout scm
                     }
                 }
                 stage ('Build') {
-                    container('jenkins-node') {
+                    container('jenkins-pod') {
                         sh "echo 'building ${config.projectName} ...'"
                         sh "mvn clean compile package"
                     }
                 }
                 stage ('Tests') {
-                    container('jenkins-node') {
+                    container('jenkins-pod') {
                         sh "echo 'shell scripts to run static tests...'"
                         sh "mvn test"
                         sh "mvn verify"
                     }
                 }
                 stage ('Deploy') {
-                    container('jenkins-node') {
+                    container('jenkins-pod') {
                         sh "echo 'deploying to server ${config.serverDomain}...'"
                         sh "echo mvn deploy"
                     }
